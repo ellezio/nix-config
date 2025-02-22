@@ -1,30 +1,37 @@
 { catppuccin-alacritty
 , config
 , lib
+, pkgs
 , ...
 }:
-let
-  cfg = config.alacritty;
-in
+# let
+#   cfg = config.alacritty;
+# in
 {
-  options.alacritty = {
-    font-size = lib.mkOption {
-      default = null;
-    };
+  # options.alacritty = {
+  #   font-size = lib.mkOption {
+  #     default = null;
+  #   };
+  # };
+
+  home.packages = [ pkgs.alacritty ];
+
+  home.file = {
+    ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/alacritty";
   };
 
-  config.programs = {
-    alacritty = {
-      enable = true;
-
-      settings = {
-        font = {
-          normal = {
-            family = "FantasqueSansM Nerd Font";
-            style = "Regular";
-          };
-        } // (lib.mkIf (cfg.font-size != null) { size = cfg.font-size; });
-      } // builtins.fromTOML (builtins.readFile "${catppuccin-alacritty}/catppuccin-mocha.toml");
-    };
-  };
+  # config.programs = {
+  #   alacritty = {
+  #     enable = true;
+  #
+  #     settings = {
+  #       font = {
+  #         normal = {
+  #           family = "FiraMono Nerd Font";
+  #           style = "Regular";
+  #         };
+  #       };
+  #     } // builtins.fromTOML (builtins.readFile "${catppuccin-alacritty}/catppuccin-mocha.toml");
+  #   };
+  # };
 }

@@ -1,12 +1,12 @@
-{ catppuccin-starship, ... }: {
+{ config, ... }: {
   programs.starship = {
     enable = true;
 
     enableBashIntegration = true;
     enableZshIntegration = true;
+  };
 
-    settings = {
-      palette = "catppuccin_mocha";
-    } // builtins.fromTOML (builtins.readFile "${catppuccin-starship}/palettes/mocha.toml");
+  home.file = {
+    ".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/starship.toml";
   };
 }

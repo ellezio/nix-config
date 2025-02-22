@@ -172,7 +172,7 @@ exec --no-startup-id nm-applet
 #       Misc
 # ================================
 
-font pango:FantasqueSansM Nerd Font Regular 8
+font pango:FiraCode Nerd Font Regular 8
 
 mouse_warping none
 

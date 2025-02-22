@@ -6,7 +6,12 @@
   home.username = username;
   home.homeDirectory = "/home/${username}";
 
+  xdg.enable = true;
+
   home.packages = with pkgs; [
+    git
+    rustup
+
     hostctl
     lazydocker
     lazygit
@@ -30,7 +35,7 @@
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    # (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -74,7 +79,7 @@
     EDITOR = "nvim";
   };
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
 
   programs.home-manager.enable = true;
 }

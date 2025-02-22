@@ -27,10 +27,18 @@ let
   configs = (import ../hosts/plendzion (inputs // {
     inherit nixosSystem;
   })).nixosConfigurations;
+
+  vbox-config = (import ../hosts/nixos-vbox (inputs // {
+    inherit nixosSystem;
+  })).nixosConfigurations;
+
+  ellezio-config = (import ../hosts/ellezio (inputs // {
+    inherit nixosSystem;
+  })).nixosConfigurations;
 in
 {
   nixosConfigurations = {
-    nixos-vbox = nixosSystem (import ../hosts/nixos-vbox inputs);
+    # nixos-vbox = nixosSystem (import ../hosts/nixos-vbox inputs);
     # plendzion = nixosSystem (import ../hosts/plendzion inputs);
-  } // configs;
+  } // configs // vbox-config // ellezio-config;
 }

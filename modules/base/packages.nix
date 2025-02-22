@@ -8,5 +8,6 @@
     btop
     pciutils
     usbutils
+    toybox
   ];
 }

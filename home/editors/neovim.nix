@@ -1,4 +1,4 @@
-{ pkgs, neovim-config, ... }: {
+{ pkgs, config, ... }: {
   home.packages = with pkgs; [
     xclip
     gnumake
@@ -30,9 +30,6 @@
   };
 
   home.file = {
-    ".config/nvim" = {
-      source = neovim-config;
-      recursive = true;
-    };
+    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/nvim";
   };
 }

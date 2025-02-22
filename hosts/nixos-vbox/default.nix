@@ -1,8 +1,8 @@
-{ ... }:
+{ nixosSystem, ... }:
 let
   hostName = "nixos-vbox";
 
-  base-config = {
+  base-config = { pkgs, ... }: {
     # Bootloader.
     boot.loader.grub = {
       enable = true;
@@ -24,11 +24,19 @@ let
       # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
     };
 
-    virtualisation.virtualbox.guest = {
-      enable = true;
-    };
+    # hardware = {
+    #   graphics.enable = true;
+    #   graphics.enable32Bit = true;
+    #   graphics.extraPackages = with pkgs; [
+    #     mesa
+    #     mesa.drivers
+    #   ];
+    # };
 
-    system.stateVersion = "24.05";
+    virtualisation.virtualbox.guest.enable = true;
+    services.xserver.videoDrivers = [ "wmware" ];
+
+    system.stateVersion = "24.11";
   };
 
   base-modules = {
@@ -60,5 +68,6 @@ let
     ] ++ base-modules.home;
   };
 in
-i3-modules
-
+{
+  nixosConfigurations.${hostName} = nixosSystem i3-modules;
+}

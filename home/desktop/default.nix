@@ -24,7 +24,7 @@ in
   config = mkIf i3Cfg.enable (mkMerge [
     {
       xsession.initExtra = ''
-        ${pkgs.picom}/bin/picom --config ${./picom/conf/picom.conf} -b
+        # ${pkgs.picom}/bin/picom --config ${./picom/conf/picom.conf} -b
         ${monitor-setup-script}
         ${pkgs.feh}/bin/feh ${wallpaper} --bg-fill
       '';
