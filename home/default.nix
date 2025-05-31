@@ -6,11 +6,16 @@
   home.username = username;
   home.homeDirectory = "/home/${username}";
 
+  services.mpris-proxy.enable = true;
+
   xdg.enable = true;
 
   home.packages = with pkgs; [
     git
+
     rustup
+    go
+    gopls
 
     hostctl
     lazydocker
@@ -29,7 +34,13 @@
     }))
 
     dbeaver-bin
+
     google-chrome
+    (brave.override { commandLineArgs = ''--password-store="basic"''; })
+
+    kdePackages.okular
+
+    distrobox
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -79,7 +90,7 @@
     EDITOR = "nvim";
   };
 
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
 
   programs.home-manager.enable = true;
 }

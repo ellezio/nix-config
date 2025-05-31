@@ -1,23 +1,39 @@
 { pkgs, ... }: {
 
   environment.systemPackages = with pkgs; [
-    pulseaudio
+    pulseaudioFull
   ];
 
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+  services = {
+    pulseaudio = {
+      enable = true;
+      package = pkgs.pulseaudioFull;
+      daemon.config = {
+        default-fragments = 4;
+        default-fragment-size-msec = 8;
+      };
+      # configFile = pkgs.runCommand "default.pa" { } ''
+      #   sed 's/module-udev-detect$/module-udev-detect tsched=0/' \
+      #     ${pkgs.pulseaudio}/etc/pulse/default.pa > $out
+      # '';
+    };
+    pipewire.enable = false;
   };
+
+  security.rtkit.enable = true;
+  # Enable sound with pipewire.
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = true;
+  #   # audio.enable = true; # use pipewire as primary sound server
+  #   jack.enable = true;
+  #
+  #   # use the example session manager (no others are packaged yet so this is enabled by default,
+  #   # no need to redefine it in your config for now)
+  #   #media-session.enable = true;
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

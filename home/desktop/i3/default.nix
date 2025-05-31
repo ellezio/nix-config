@@ -25,6 +25,7 @@ in
     rofi
     i3status
     xss-lock
+    brightnessctl
     (polybar.override { i3Support = true; pulseSupport = true; })
   ];
 

@@ -3,11 +3,13 @@
     xclip
     gnumake
     ripgrep
-    nodejs_18
+    nodejs_22
+    deno
 
     # Formatters
     nixpkgs-fmt
     prettierd
+    stylua
 
     # LSPs
     lua-language-server # lua
@@ -17,6 +19,7 @@
     nodePackages.intelephense
 
     # DAPs
+    # (writeShellScriptBin "php-debug" "${nodejs_18}/bin/node ${vscode-extensions.xdebug.php-debug}/share/vscode/extensions/xdebug/php-debug/out/extension.js")
   ];
 
   programs = {
@@ -29,7 +32,5 @@
     };
   };
 
-  home.file = {
-    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/nvim";
-  };
+  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/nvim";
 }

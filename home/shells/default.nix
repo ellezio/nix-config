@@ -8,9 +8,9 @@ in
   ];
 
   programs = {
-    zoxide = {
-      enable = true;
-    };
+    # zoxide = {
+    #   enable = true;
+    # };
 
     direnv = {
       enable = true;
@@ -30,7 +30,7 @@ in
         fh = ". ${scripts.fzf-cd}/bin/fzf-cd ~";
       };
 
-      initExtra = ''
+      initContent = ''
         bindkey '^E' autosuggest-accept
         bindkey '^ ' forward-word
         source <(${pkgs.fzf}/bin/fzf --zsh)
@@ -45,22 +45,12 @@ in
 
       plugins = [
         {
-          name = "zsh-autosuggestions";
-          src = pkgs.fetchFromGitHub {
-            owner = "zsh-users";
-            repo = "zsh-autosuggestions";
-            rev = "v0.7.0";
-            hash = "sha256-KLUYpUu4DHRumQZ3w59m9aTW6TBKMCXl2UcKi4uMd7w=";
-          };
+          name = pkgs.zsh-autosuggestions.pname;
+          src = pkgs.zsh-autosuggestions.src;
         }
         {
-          name = "zsh-syntax-highlighting";
-          src = pkgs.fetchFromGitHub {
-            owner = "zsh-users";
-            repo = "zsh-syntax-highlighting";
-            rev = "0.8.0";
-            hash = "sha256-iJdWopZwHpSyYl5/FQXEW7gl/SrKaYDEtTH9cGP7iPo=";
-          };
+          name = pkgs.zsh-syntax-highlighting.pname;
+          src = pkgs.zsh-syntax-highlighting.src;
         }
       ];
     };
