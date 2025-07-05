@@ -12,5 +12,6 @@
     git
     tmux
     neovim
+    starship
   ]);
 }

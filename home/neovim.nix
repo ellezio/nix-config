@@ -4,7 +4,9 @@
     gnumake
     ripgrep
     nodejs_22
-    deno
+
+    # NOTE too long to compile
+    # deno
 
     # Formatters
     nixpkgs-fmt
@@ -32,5 +34,5 @@
     };
   };
 
-  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/nvim";
+  # home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/nvim";
 }

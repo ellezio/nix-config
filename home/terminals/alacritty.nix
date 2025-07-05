@@ -14,11 +14,11 @@
   #   };
   # };
 
-  home.packages = [ pkgs.alacritty ];
+  # home.packages = [ pkgs.alacritty ];
 
-  home.file = {
-    ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/alacritty";
-  };
+  # home.file = {
+  #   ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/alacritty";
+  # };
 
   # config.programs = {
   #   alacritty = {
