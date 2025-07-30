@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  boot.kernelPackages = pkgs.linuxPackages_6_13;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   environment.variables.EDITOR = "nvim";
   environment.etc.hosts.mode = "0644";

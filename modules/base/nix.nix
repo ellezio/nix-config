@@ -1,10 +1,10 @@
-{ lib, nixpkgs-unstable, nixpkgs, ... }: {
+{ lib, nixpkgs, ... }: {
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.nvidia.acceptLicense = true;
 
   # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
   nix.registry.nixpkgs.flake = nixpkgs;
-  nix.registry.nixpkgs-unstable.flake = nixpkgs-unstable;
+  # nix.registry.nixpkgs-unstable.flake = nixpkgs-unstable;
   nix.channel.enable = false; # remove nix-channel related tools & configs, we use flakes instead.
 
   # but NIX_PATH is still used by many useful tools, so we set it to the same value as the one used by this flake.

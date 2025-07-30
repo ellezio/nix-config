@@ -1,4 +1,4 @@
-{ pkgs, upkgs, ... }: {
+{ pkgs, ... }: {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -8,10 +8,9 @@
     pciutils
     usbutils
     toybox
-  ] ++ (with upkgs; [
     git
     tmux
     neovim
     starship
-  ]);
+  ];
 }

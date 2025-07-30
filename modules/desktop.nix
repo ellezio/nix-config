@@ -7,60 +7,60 @@ in
   };
 
   config = mkIf cfgXorg.enable {
-    environment.pathsToLink = [ "/libexec" ];
+    # environment.pathsToLink = [ "/libexec" ];
     services = {
-      displayManager.defaultSession = "hm-session";
-      # displayManager.defaultSession = "none+i3";
+      # displayManager.defaultSession = "hm-session";
+      displayManager.defaultSession = "none+i3";
 
       xserver = {
         enable = true;
 
-        displayManager = {
-          lightdm.enable = true;
-
-          # session = [
-          #   {
-          #     name = "hm-session";
-          #     manage = "window";
-          #     start = ''
-          #       ${pkgs.runtimeShell} $HOME/.xsession &
-          #       waitPID=$!
-          #     '';
-          #   }
-          # ];
-        };
-
-        desktopManager = {
-          # xterm.enable = false;
-          runXdgAutostartIfNone = true;
-          session = [
-            {
-              name = "hm-session";
-              manage = "window";
-              start = ''
-                ${pkgs.runtimeShell} $HOME/.xsession &
-                waitPID=$!
-              '';
-            }
-          ];
-        };
-
-        # windowManager.i3 = {
-        #   enable = true;
-        #   configFile = "/home/pawellendzion/.config/i3/config";
-        #   extraPackages = with pkgs; [
-        #     dmenu
-        #     # i3status
-        #     i3lock
-        #     i3blocks
+        # displayManager = {
+        #   lightdm.enable = true;
         #
-        #     rofi
-        #     i3status
-        #     xss-lock
-        #     brightnessctl
-        #     (polybar.override { i3Support = true; pulseSupport = true; })
+        #   # session = [
+        #   #   {
+        #   #     name = "hm-session";
+        #   #     manage = "window";
+        #   #     start = ''
+        #   #       ${pkgs.runtimeShell} $HOME/.xsession &
+        #   #       waitPID=$!
+        #   #     '';
+        #   #   }
+        #   # ];
+        # };
+
+        # desktopManager.xterm.enable = false;
+        # desktopManager = {
+        #   runXdgAutostartIfNone = true;
+        #   session = [
+        #     {
+        #       name = "hm-session";
+        #       manage = "window";
+        #       start = ''
+        #         ${pkgs.runtimeShell} $HOME/.xsession &
+        #         waitPID=$!
+        #       '';
+        #     }
         #   ];
         # };
+
+        windowManager.i3 = {
+          enable = true;
+          # configFile = "/home/pawellendzion/.config/i3/config";
+          extraPackages = with pkgs; [
+            # dmenu
+            # i3status
+            # i3lock
+            # i3blocks
+
+            rofi
+            i3status
+            xss-lock
+            brightnessctl
+            (polybar.override { i3Support = true; pulseSupport = true; })
+          ];
+        };
 
         xkb = {
           layout = "pl";

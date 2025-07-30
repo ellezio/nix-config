@@ -1,7 +1,7 @@
-{ upkgs, username, ... }: {
+{ pkgs, username, ... }: {
   virtualisation.docker = {
     enable = true;
-    package = upkgs.docker;
+    package = pkgs.docker;
   };
 
   users.users.${username} = {

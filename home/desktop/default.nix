@@ -21,14 +21,14 @@ in
     };
   };
 
-  config = mkIf i3Cfg.enable (mkMerge [
-    {
-      xsession.initExtra = ''
-        # ${pkgs.picom}/bin/picom --config ${./picom/conf/picom.conf} -b
-        ${monitor-setup-script}
-        ${pkgs.feh}/bin/feh ${wallpaper} --bg-fill
-      '';
-    }
-    (import ./i3 (args // { inherit (i3Cfg) modifier extraConfig; }))
-  ]);
+  # config = mkIf i3Cfg.enable (mkMerge [
+  #   {
+  #     xsession.initExtra = ''
+  #       # ${pkgs.picom}/bin/picom --config ${./picom/conf/picom.conf} -b
+  #       ${monitor-setup-script}
+  #       ${pkgs.feh}/bin/feh ${wallpaper} --bg-fill
+  #     '';
+  #   }
+  #   (import ./i3 (args // { inherit (i3Cfg) modifier extraConfig; }))
+  # ]);
 }

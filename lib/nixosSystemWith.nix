@@ -16,7 +16,7 @@ nixpkgs.lib.nixosSystem {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.extraSpecialArgs = specialArgs // {
-        pkgs = specialArgs.upkgs;
+        # pkgs = specialArgs.upkgs;
       };
 
       home-manager.users.${username}.imports = modules.home;

@@ -9,11 +9,11 @@ let
   specialArgs = inputs // {
     inherit username userFullName mylib;
 
-    upkgs = import inputs.nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-      config.nvidia.acceptLicense = true;
-    };
+    # upkgs = import inputs.nixpkgs-unstable {
+    #   inherit system;
+    #   config.allowUnfree = true;
+    #   config.nvidia.acceptLicense = true;
+    # };
   };
 
   nixosSystem = mylib.nixosSystemWith { inherit inputs specialArgs system username; };
