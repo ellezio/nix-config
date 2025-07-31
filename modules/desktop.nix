@@ -7,11 +7,11 @@ in
   };
 
   config = mkIf cfgXorg.enable {
-    # environment.pathsToLink = [ "/libexec" ];
+    environment.pathsToLink = [ "/libexec" ];
     services = {
       # displayManager.defaultSession = "hm-session";
       displayManager.defaultSession = "none+i3";
-
+      xserver.displayManager.lightdm.enable = true;
       xserver = {
         enable = true;
 

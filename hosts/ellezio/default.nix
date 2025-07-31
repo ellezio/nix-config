@@ -58,11 +58,11 @@ let
       tlp = {
         enable = true;
         settings = {
-          CPU_SCALING_GOVERNOR_ON_AC = "performance";
-          CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+          # CPU_SCALING_GOVERNOR_ON_AC = "performance";
+          # CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-          CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
-          CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+          # CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
+          # CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
 
           # CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
           # CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
@@ -88,8 +88,6 @@ let
       blueman.enable = true;
     };
 
-    boot.initrd.kernelModules = [ "nvidia" ];
-    boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
     hardware = {
       enableRedistributableFirmware = true;
 
@@ -107,6 +105,8 @@ let
       };
 
       graphics.enable = true;
+      graphics.enable32Bit = true;
+
       nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
       nvidia.nvidiaSettings = true;
       nvidia.modesetting.enable = true;
@@ -117,6 +117,10 @@ let
 
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
+      };
+      nvidia.powerManagement = {
+        enable = true;
+        finegrained = true;
       };
     };
 
