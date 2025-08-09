@@ -7,7 +7,7 @@
     btop
     pciutils
     usbutils
-    toybox
+    # toybox
     git
     tmux
     neovim
