@@ -9,6 +9,7 @@
       username
       "networkmanager"
       "wheel"
+      "video"
     ];
   };
 

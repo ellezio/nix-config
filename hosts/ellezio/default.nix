@@ -84,8 +84,6 @@ let
         enable = true;
         touchpad.naturalScrolling = true;
       };
-
-      blueman.enable = true;
     };
 
     hardware = {
@@ -96,12 +94,12 @@ let
       bluetooth = {
         enable = true;
         powerOnBoot = true;
-        settings = {
-          General = {
-            Disable = "Headset";
-            MultiProfile = "multiple";
-          };
-        };
+        # settings = {
+        #   General = {
+        #     Disable = "Headset";
+        #     MultiProfile = "multiple";
+        #   };
+        # };
       };
 
       graphics.enable = true;
