@@ -12,5 +12,6 @@
     tmux
     neovim
     starship
+    bruno
   ];
 }

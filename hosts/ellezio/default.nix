@@ -27,6 +27,7 @@ let
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+      gamescopeSession.enable = true;
     };
 
     networking = {
@@ -86,7 +87,11 @@ let
       };
     };
 
+    environment.systemPackages = with pkgs; [ keymapp ];
+
     hardware = {
+      keyboard.zsa.enable = true;
+
       enableRedistributableFirmware = true;
 
       cpu.intel.updateMicrocode = true;
