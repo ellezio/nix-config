@@ -1,4 +1,4 @@
-{ username, pkgs, mylib, config, ... }:
+{ username, pkgs, upkgs, mylib, config, ... }:
 
 {
   imports = mylib.getPaths ./.;
@@ -39,6 +39,8 @@
     alacritty
 
     obsidian
+
+    upkgs.opencode
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

@@ -1,4 +1,4 @@
-{ nixosSystem, ... }:
+{ nixosSystem, dw-proton, ... }:
 let
   hostName = "ellezio";
 
@@ -28,6 +28,9 @@ let
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
       gamescopeSession.enable = true;
+      extraCompatPackages = [
+        dw-proton.packages.${pkgs.stdenv.hostPlatform.system}.dw-proton
+      ];
     };
 
     networking = {
