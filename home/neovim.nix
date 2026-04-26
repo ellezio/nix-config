@@ -4,6 +4,7 @@
     gnumake
     ripgrep
     nodejs_22
+    tree-sitter
 
     # NOTE too long to compile
     # deno
@@ -17,8 +18,8 @@
     lua-language-server # lua
     nil # Nix
     vscode-langservers-extracted # JSON / HTML / CSS / ESLint
-    nodePackages.typescript-language-server
-    nodePackages.intelephense
+    typescript-language-server
+    intelephense
 
     # DAPs
     # (writeShellScriptBin "php-debug" "${nodejs_18}/bin/node ${vscode-extensions.xdebug.php-debug}/share/vscode/extensions/xdebug/php-debug/out/extension.js")
@@ -31,6 +32,9 @@
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
+
+      withPython3 = true;
+      withRuby = true;
     };
   };
 

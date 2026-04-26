@@ -1,4 +1,4 @@
-{ nixosSystem, dw-proton, ... }:
+{ nixosSystem, ... }:
 let
   hostName = "ellezio";
 
@@ -28,9 +28,6 @@ let
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
       gamescopeSession.enable = true;
-      extraCompatPackages = [
-        dw-proton.packages.${pkgs.stdenv.hostPlatform.system}.dw-proton
-      ];
     };
 
     networking = {
@@ -77,7 +74,7 @@ let
           CPU_MAX_PERF_ON_BAT = 50;
 
           TLP_DEFAULT_MODE = "BAT";
-          TLP_PERSISTENT_DEFAULT = 1;
+          # TLP_PERSISTENT_DEFAULT = 1;
 
           START_CHARGE_THRESH_BAT0 = 40;
           STOP_CHARGE_THRESH_BAT0 = 60;

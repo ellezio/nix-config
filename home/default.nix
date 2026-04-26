@@ -14,8 +14,8 @@
     git
 
     rustup
-    go
-    gopls
+    upkgs.go
+    upkgs.gopls
 
     hostctl
     lazydocker

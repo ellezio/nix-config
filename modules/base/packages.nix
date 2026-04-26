@@ -3,7 +3,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     gcc
-    neofetch
     btop
     pciutils
     usbutils
@@ -13,5 +12,10 @@
     neovim
     starship
     bruno
+
+    man-pages
+    man-pages-posix
   ];
+
+  documentation.dev.enable = true;
 }
