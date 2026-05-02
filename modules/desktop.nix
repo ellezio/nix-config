@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: with lib; let
+{ config, lib, pkgs, upkgs, ... }: with lib; let
   cfgXorg = config.modules.desktop.xorg;
 in
 {
@@ -48,17 +48,17 @@ in
         windowManager.i3 = {
           enable = true;
           # configFile = "/home/pawellendzion/.config/i3/config";
-          extraPackages = with pkgs; [
+          extraPackages = with upkgs; [
             # dmenu
             # i3status
             # i3lock
             # i3blocks
 
             rofi
-            i3status
+            i3status-rust
             xss-lock
             brightnessctl
-            (polybar.override { i3Support = true; pulseSupport = true; })
+            pavucontrol
           ];
         };
 

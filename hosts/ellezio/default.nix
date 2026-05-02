@@ -140,7 +140,6 @@ let
 
     home = [
       ../../home
-      ./home.nix
     ];
   };
 
@@ -148,15 +147,7 @@ let
     nixos = [
       { modules.desktop.xorg.enable = true; }
     ] ++ base-modules.nixos;
-
-    home = [
-      {
-        modules.desktop.i3 = {
-          enable = true;
-          modifier = "Mod4";
-        };
-      }
-    ] ++ base-modules.home;
+    home = base-modules.home;
   };
 in
 {
