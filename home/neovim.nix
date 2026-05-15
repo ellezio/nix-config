@@ -27,14 +27,15 @@
 
   programs = {
     neovim = {
-      enable = true;
+      # enable = true;
+      # package = upkgs.neovim;
 
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
 
-      withPython3 = true;
-      withRuby = true;
+      # withPython3 = true;
+      # withRuby = true;
     };
   };
 

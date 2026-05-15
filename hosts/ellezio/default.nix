@@ -5,7 +5,7 @@ let
   system-config = { config, pkgs, ... }: {
     # Bootloader.
     boot.loader = {
-      efi.canTouchEfiVariables = true;
+      efi.canTouchEfiVariables = false;
       grub = {
         enable = true;
         device = "nodev";
@@ -28,6 +28,7 @@ let
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
       gamescopeSession.enable = true;
+      extraPackages = with pkgs; [ hidapi ];
     };
 
     networking = {
@@ -54,6 +55,9 @@ let
     services = {
       xserver.dpi = 96;
       xserver.videoDrivers = [ "nvidia" ];
+      xserver.deviceSection = ''
+        Option "Device" "PCI:0:2:0"
+      '';
 
       thermald.enable = true;
       tlp = {
@@ -91,6 +95,7 @@ let
 
     hardware = {
       keyboard.zsa.enable = true;
+      steam-hardware.enable = true;
 
       enableRedistributableFirmware = true;
 
@@ -107,23 +112,27 @@ let
         # };
       };
 
-      graphics.enable = true;
-      graphics.enable32Bit = true;
-
-      nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-      nvidia.nvidiaSettings = true;
-      nvidia.modesetting.enable = true;
-      nvidia.open = true;
-      nvidia.prime = {
-        offload.enable = true;
-        offload.enableOffloadCmd = true;
-
-        intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:1:0:0";
-      };
-      nvidia.powerManagement = {
+      graphics = {
         enable = true;
-        finegrained = true;
+        enable32Bit = true;
+        extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
+      };
+      nvidia = {
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        nvidiaSettings = true;
+        modesetting.enable = true;
+        open = true;
+        prime = {
+          offload.enable = true;
+          offload.enableOffloadCmd = true;
+
+          intelBusId = "PCI:0@0:2:0";
+          nvidiaBusId = "PCI:1@0:0:0";
+        };
+        powerManagement = {
+          enable = true;
+          finegrained = true;
+        };
       };
     };
 
