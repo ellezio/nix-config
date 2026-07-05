@@ -4,20 +4,29 @@
     pulseaudioFull
   ];
 
-  services = {
-    pulseaudio = {
-      enable = true;
-      package = pkgs.pulseaudioFull;
-      daemon.config = {
-        default-fragments = 4;
-        default-fragment-size-msec = 8;
-      };
-      # configFile = pkgs.runCommand "default.pa" { } ''
-      #   sed 's/module-udev-detect$/module-udev-detect tsched=0/' \
-      #     ${pkgs.pulseaudio}/etc/pulse/default.pa > $out
-      # '';
-    };
-    pipewire.enable = false;
+  # services = {
+  #   pulseaudio = {
+  #     enable = true;
+  #     package = pkgs.pulseaudioFull;
+  #     daemon.config = {
+  #       default-fragments = 4;
+  #       default-fragment-size-msec = 8;
+  #     };
+  #     # configFile = pkgs.runCommand "default.pa" { } ''
+  #     #   sed 's/module-udev-detect$/module-udev-detect tsched=0/' \
+  #     #     ${pkgs.pulseaudio}/etc/pulse/default.pa > $out
+  #     # '';
+  #   };
+  #   pipewire.enable = false;
+  # };
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
   };
 
   security.rtkit.enable = true;
